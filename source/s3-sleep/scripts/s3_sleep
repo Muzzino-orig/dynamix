@@ -37,10 +37,11 @@
 # Version 3.0.7   Support for multi cache pool - added in Unraid 6.9
 #                 Correction for Cache pool
 #                 Added monitor option: both (default), status only, counters only
+# Version 3.0.8   Support for monitoring specific TCP IP:Port
 #
 # Bergware International
 ####################################################################################
-version=3.0.7
+version=3.0.8
 program=$(basename $0)
 ini=/var/local/emhttp/disks.ini
 
@@ -134,7 +135,7 @@ idle=0                # threshold of TCP activity in KB
 checkSSH=no           # check for remote login sessions (telnet or SSH)
 checkTTY=no           # check for local login sessions (if "no" allows console debugging)
 hosts=()              # do not sleep when 'hosts' are pingable
-                      # example: <hosts="192.168.1.1 172.16.1.1">
+                      # example: <hosts="192.168.1.1 172.16.1.1:80">
 
 # before sleep
 setWol=               # set wol options before sleep
@@ -265,19 +266,29 @@ TCP_activity() {
 }
 
 IP_activity() {
-  result=
-  if [[ -n $hosts ]]; then
-    for ip in ${hosts[@]}; do
-      if [[ $(ping -n -q -c 2 $ip|awk '/received/ {print $4}') -gt 0 ]]; then
-        result=1
-        break
-      fi
-    done
-  fi
-  if [[ -n $result ]]; then
-    log "Host activity on going: $ip"
-    echo $result
-  fi
+ result= ;
+ if [[ -n $hosts ]]; then
+  for ips in ${hosts[@]}; do
+   if [[ $ips == *":"* ]]; then
+	#Check for IP/Port
+    timeout 1 bash -c "</dev/tcp/${ips//://}";
+    if [ $? == 0 ];then
+     result=1;
+     break;
+    fi;
+    #Check for IP
+   else if [[ $(ping -n -q -c 2 $ips|awk '/received/ {print $4}') -gt 0 ]]; then
+    result=1;
+    break;
+        fi;
+   fi;
+  done
+ fi;
+
+ if [[ -n $result ]]; then
+  log "Host activity on going: $ip"
+  echo $result
+ fi
 }
 
 TTY_activity() {
