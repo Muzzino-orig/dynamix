@@ -2,10 +2,10 @@
 
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "dynamix.s3.sleep">
-<!ENTITY author    "Bergware">
-<!ENTITY version   "2020.06.21">
+<!ENTITY author    "Muzzino-orig">
+<!ENTITY version   "2020.12.03">
 <!ENTITY launch    "Settings/SleepSettings">
-<!ENTITY pluginURL "https://raw.githubusercontent.com/bergware/dynamix/master/unRAIDv6/&name;.plg">
+<!ENTITY pluginURL "https://raw.githubusercontent.com/Muzzino-orig/dynamix/master/unRAIDv6/&name;.plg">
 <!ENTITY source    "/boot/config/plugins/&name;/&name;">
 <!ENTITY MD5       "d04aae83307bb40e67fea98532fe5d74">
 ]>
@@ -16,6 +16,9 @@
 ##&name;
 
 ###&version;
+- added IP:[port] check
+
+###2020.06.21;
 - fixed regression error
 
 ###2020.06.20
@@ -143,7 +146,7 @@
 </CHANGES>
 
 <!--
-Copyright 2020, Bergware International
+Copyright 2020, Muzzino-orig International
 Dynamix S3 Sleep - Manual and automatic sleep mode
 -->
 
@@ -186,7 +189,7 @@ fi
 
 <!-- SOURCE PACKAGE -->
 <FILE Name="&source;.txz" Run="upgradepkg --install-new --reinstall">
-<URL>https://raw.githubusercontent.com/bergware/dynamix/master/archive/&name;.txz</URL>
+<URL>https://raw.githubusercontent.com/Muzzino-orig/dynamix/master/archive/&name;.txz</URL>
 <MD5>&MD5;</MD5>
 </FILE>
 
@@ -254,7 +257,7 @@ echo ""
 echo "-----------------------------------------------------------"
 echo " Plugin &name; is installed."
 echo " This plugin requires Dynamix webGui to operate"
-echo " Copyright 2020, Bergware International"
+echo " Copyright 2020, Muzzino-orig International"
 echo " Version: &version;"
 echo "-----------------------------------------------------------"
 echo ""
