@@ -37,7 +37,7 @@
 # Version 3.0.7   Support for multi cache pool - added in Unraid 6.9
 #                 Correction for Cache pool
 #                 Added monitor option: both (default), status only, counters only
-# Version 3.0.8   Support for monitoring specific TCP IP:Port
+# Version 3.0.9   Support for monitoring specific TCP IP:Port
 #
 # Bergware International
 ####################################################################################
