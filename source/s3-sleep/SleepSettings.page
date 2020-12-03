@@ -238,13 +238,13 @@ _(Network idle threshold)_:
 > Network activity is measured under different thresholds. Ranging from completely silent to megabit traffic. Experiment with this setting to find to right balance for your situation.
 :end
 
-_(Wait for host inactivity)_ (_(IP address)_):
+_(Wait for host inactivity)_ (_(IP address[:Port])_):
 : <input type="text" name="pingIP" maxlength="200" value="<?=$cfg['pingIP']?>" class="narrow" placeholder="_(no host)_">
 
 :s3sleep_host_plug:
-> Select whether external hosts need to be monitored and non-responding as a sleep or shutdown condition.
+> Select whether external hosts[:port] (the port is optional) need to be monitored and non-responding as a sleep or shutdown condition.
 >
-> External hosts are given by their IP address, use a comma to separate multiple IP addresses. As long as one of the external hosts responds to a ping then sleep/shutdown won't be invoked.
+> External hosts are given by their IP:[Port] address, use a comma to separate multiple addresses. As long as one of the external hosts[:port] responds then sleep/shutdown won't be invoked.
 :end
 
 _(Wait for user login inactivity)_:

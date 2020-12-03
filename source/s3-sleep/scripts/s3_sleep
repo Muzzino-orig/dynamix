@@ -286,7 +286,7 @@ IP_activity() {
  fi;
 
  if [[ -n $result ]]; then
-  log "Host activity on going: $ip"
+  log "Host activity on going: $ips"
   echo $result
  fi
 }
